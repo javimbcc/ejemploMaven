@@ -30,7 +30,7 @@ public class consultasPostgreSQL {
 				declaracionSQL = conexion.createStatement();
 				// Se hace y ejecuta la consulta
 				resultadoConsulta = declaracionSQL
-						.executeQuery("SELECT * FROM \"dlk_operacional_productos\".\"opr_cat_productos\"");
+						.executeQuery("SELECT * FROM \"ejercicioCCasa\".\"Alumnos\"");
 
 				// Lo metemos en la lista
 

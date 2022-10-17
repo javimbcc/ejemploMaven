@@ -43,5 +43,10 @@ public class App {
 		listAlumnos = consultasPostgreSQL.listarAlumnos(cn);
 		
 		// Imprimimos por pantalla
+		
+		for (int i=0;i<listAlumnos.size();i++) {
+			System.out.println("id: " + " " + listAlumnos.get(i).id + " || " + "nombre: " + " " + listAlumnos.get(i).nombre + " || " + "apellidos: " + " " + listAlumnos.get(i).apellidos + " || " + "email: " + " " + listAlumnos.get(i).email);
+		}
+		
 	}
 }
