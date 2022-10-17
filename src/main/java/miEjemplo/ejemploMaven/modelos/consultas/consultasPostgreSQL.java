@@ -1,6 +1,7 @@
 package miEjemplo.ejemploMaven.modelos.consultas;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -103,11 +104,32 @@ public class consultasPostgreSQL {
 				// Abrimos la declaracion
 				declaracionSQL = conexion.createStatement();
 				// Se hace y ejecuta la consulta
-				resultadoConsulta = declaracionSQL
-						.executeQuery("UPDATE \"ejercicioCCasa\".\"Alumnos\" SET nombre='Antonio', apellidos='Sumerio2', email='cigalaupdate@update.com' WHERE id=6 ");
+				resultadoConsulta = declaracionSQL.executeQuery(
+						"UPDATE \"ejercicioCCasa\".\"Alumnos\" SET nombre='Antonio', apellidos='Sumerio2', email='cigalaupdate@update.com' WHERE id=6 ");
 
 			} catch (SQLException e) {
 				System.out.println("Error generando la declaracionSQL (UPDATE): " + e);
+
+			}
+		}
+	}
+
+	// Create table
+
+	public static void crearTabla(Connection conexion) {
+		// Declaramos el state y la respuesta
+		Statement declaracionSQL = null;
+		if (conexion != null) {
+
+			try {
+				System.out.println("CREAMOS TABLA NUEVA");
+				// Abrimos la declaracion
+				declaracionSQL = conexion.createStatement();
+				// Se hace y ejecuta la consulta
+				declaracionSQL.executeUpdate(
+						"CREATE TABLE IF NOT EXISTS ejemplo (ejemplo_java CHARACTER VARYING NOT NULL)");
+			} catch (SQLException e) {
+				System.out.println("Error generando la declaracionSQL (CREATE TABLE): " + e);
 
 			}
 		}

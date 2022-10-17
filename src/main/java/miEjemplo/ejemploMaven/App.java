@@ -55,8 +55,10 @@ public class App {
 		//consultasPostgreSQL.eliminarAlumnos(cn);
 		
 		//Hacemos el update
+		//consultasPostgreSQL.cambiarDatosAlumno(cn);
 		
-		consultasPostgreSQL.cambiarDatosAlumno(cn);
+		//Creamos la tabla ejemplo
+		consultasPostgreSQL.crearTabla(cn);
 		
 		try {
 			cn.close();
