@@ -55,8 +55,9 @@ public class consultasPostgreSQL {
 				// Abrimos la declaracion
 				declaracionSQL = conexion.createStatement();
 				// Se hace y ejecuta la consulta
-				resultadoConsulta = declaracionSQL.executeQuery("INSERT INTO \"ejercicioCCasa\".\"Alumnos\" (nombre,apellidos,email)"
-						+ "VALUES('Insert','De Ejemplo','insert@gmail.com')");
+				resultadoConsulta = declaracionSQL
+						.executeQuery("INSERT INTO \"ejercicioCCasa\".\"Alumnos\" (nombre,apellidos,email)"
+								+ "VALUES('Insert','De Ejemplo','insert@gmail.com')");
 
 			} catch (SQLException e) {
 
@@ -65,4 +66,30 @@ public class consultasPostgreSQL {
 			}
 		}
 	}
+
+	// Delete alumno
+
+	public static void eliminarAlumnos(Connection conexion) {
+		// Declaramos el state y la respuesta
+		Statement declaracionSQL = null;
+		ResultSet resultadoConsulta = null;
+		if (conexion != null) {
+
+			try {
+				System.out.println("HACEMOS El DELETE");
+				// Abrimos la declaracion
+				declaracionSQL = conexion.createStatement();
+				// Se hace y ejecuta la consulta
+				resultadoConsulta = declaracionSQL
+						.executeQuery("DELETE FROM \"ejercicioCCasa\".\"Alumnos\" WHERE id='8'");
+
+			} catch (SQLException e) {
+
+				System.out.println("Error generando la declaracionSQL (insert): " + e);
+
+			}
+		}
+	}
+
+	// Update alumno
 }
