@@ -1,14 +1,47 @@
 package miEjemplo.ejemploMaven;
 
+import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
+
+import miEjemplo.ejemploMaven.modelos.DTOs.alumnoDTO;
+import miEjemplo.ejemploMaven.modelos.conexiones.conexionPostgreSQL;
+import miEjemplo.ejemploMaven.modelos.consultas.consultasPostgreSQL;
+import miEjemplo.ejemploMaven.utils.variablesConexionPostgreSQL;
+
+
 /**
- * @author menaj
- * Controlador de la Aplicación
- * En este apartado estara incluido el controllador de la aplicación
+ * @author menaj Controlador de la Aplicación En este apartado estara incluido
+ *         el controllador de la aplicación
  */
-public class App 
-{
-    public static void main( String[] args )
-    {
-        
-    }
+public class App {
+	public static void main(String[] args) {
+		// Instanciamos los datos de conexion de utils y los desestructuramos
+		conexionPostgreSQL conexion = new conexionPostgreSQL();
+
+		// Instanciamos variablesConexionPostgreSQL para poder recoger los credenciales
+		// de inicio de sesion
+		variablesConexionPostgreSQL vc = new variablesConexionPostgreSQL();
+
+		// Instanciamos las listas
+		List<alumnoDTO> listAlumnos = new ArrayList<alumnoDTO>();
+	
+		// Hacemos su desestructuracion
+		final String HOST = vc.getHost();
+		final String PORT = vc.getPort();
+		final String DB = vc.getDb();
+		final String USER = vc.getUser();
+		final String PASS = vc.getPass();
+
+		// Hacemos la conexion
+		Connection cn = conexion.añadirConexionPostgreSql(USER, PASS, PORT, HOST, DB);
+
+		// Una vez hecha la conexión hacemos la consulta
+		consultasPostgreSQL.listarAlumnos(cn);
+
+		// metemos los valores en la lista
+		listAlumnos = consultasPostgreSQL.listarAlumnos(cn);
+		
+		// Imprimimos por pantalla
+	}
 }
