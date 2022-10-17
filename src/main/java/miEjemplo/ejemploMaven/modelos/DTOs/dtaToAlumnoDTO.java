@@ -11,9 +11,9 @@ public class dtaToAlumnoDTO {
 		List<alumnoDTO> listAlumnos = new ArrayList<alumnoDTO>();
 		try {
 			while (resultadoConsulta.next()) {
-				listAlumnos.add(new alumnoDTO((resultadoConsulta.getString("id")),
-						resultadoConsulta.getString("nombre"), resultadoConsulta.getString("apellidos"),
-						resultadoConsulta.getString("numero"), resultadoConsulta.getString("email")));
+				listAlumnos
+						.add(new alumnoDTO((resultadoConsulta.getString("id")), resultadoConsulta.getString("nombre"),
+								resultadoConsulta.getString("apellidos"), resultadoConsulta.getString("email")));
 
 			}
 		} catch (SQLException e) {

@@ -10,7 +10,6 @@ import java.util.List;
 import miEjemplo.ejemploMaven.modelos.DTOs.alumnoDTO;
 import miEjemplo.ejemploMaven.modelos.DTOs.dtaToAlumnoDTO;
 
-
 /**
  * @author menaj Consultas En este fichero estaran nuestras consultas a nuestra
  *         base de datos
@@ -29,8 +28,7 @@ public class consultasPostgreSQL {
 				// Abrimos la declaracion
 				declaracionSQL = conexion.createStatement();
 				// Se hace y ejecuta la consulta
-				resultadoConsulta = declaracionSQL
-						.executeQuery("SELECT * FROM \"ejercicioCCasa\".\"Alumnos\"");
+				resultadoConsulta = declaracionSQL.executeQuery("SELECT * FROM \"ejercicioCCasa\".\"Alumnos\"");
 
 				// Lo metemos en la lista
 
@@ -43,5 +41,28 @@ public class consultasPostgreSQL {
 			}
 		}
 		return listAlumnos;
+	}
+
+	// Insert alumno
+	public static void insertarAlumnos(Connection conexion) {
+		// Declaramos el state y la respuesta
+		Statement declaracionSQL = null;
+		ResultSet resultadoConsulta = null;
+		if (conexion != null) {
+
+			try {
+				System.out.println("HACEMOS El INSERT");
+				// Abrimos la declaracion
+				declaracionSQL = conexion.createStatement();
+				// Se hace y ejecuta la consulta
+				resultadoConsulta = declaracionSQL.executeQuery("INSERT INTO \"ejercicioCCasa\".\"Alumnos\" (nombre,apellidos,email)"
+						+ "VALUES('Insert','De Ejemplo','insert@gmail.com')");
+
+			} catch (SQLException e) {
+
+				System.out.println("Error generando la declaracionSQL (insert): " + e);
+
+			}
+		}
 	}
 }

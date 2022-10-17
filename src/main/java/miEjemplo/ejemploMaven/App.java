@@ -1,6 +1,7 @@
 package miEjemplo.ejemploMaven;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +9,6 @@ import miEjemplo.ejemploMaven.modelos.DTOs.alumnoDTO;
 import miEjemplo.ejemploMaven.modelos.conexiones.conexionPostgreSQL;
 import miEjemplo.ejemploMaven.modelos.consultas.consultasPostgreSQL;
 import miEjemplo.ejemploMaven.utils.variablesConexionPostgreSQL;
-
 
 /**
  * @author menaj Controlador de la Aplicación En este apartado estara incluido
@@ -25,7 +25,7 @@ public class App {
 
 		// Instanciamos las listas
 		List<alumnoDTO> listAlumnos = new ArrayList<alumnoDTO>();
-	
+
 		// Hacemos su desestructuracion
 		final String HOST = vc.getHost();
 		final String PORT = vc.getPort();
@@ -36,17 +36,28 @@ public class App {
 		// Hacemos la conexion
 		Connection cn = conexion.añadirConexionPostgreSql(USER, PASS, PORT, HOST, DB);
 
+		// Hacemos el insert para ver los datos por pantalla
+		consultasPostgreSQL.insertarAlumnos(cn);
 		// Una vez hecha la conexión hacemos la consulta
 		consultasPostgreSQL.listarAlumnos(cn);
 
 		// metemos los valores en la lista
 		listAlumnos = consultasPostgreSQL.listarAlumnos(cn);
-		
+
 		// Imprimimos por pantalla
-		
-		for (int i=0;i<listAlumnos.size();i++) {
-			System.out.println("id: " + " " + listAlumnos.get(i).id + " || " + "nombre: " + " " + listAlumnos.get(i).nombre + " || " + "apellidos: " + " " + listAlumnos.get(i).apellidos + " || " + "email: " + " " + listAlumnos.get(i).email);
+
+		for (int i = 0; i < listAlumnos.size(); i++) {
+			System.out.println("id: " + " " + listAlumnos.get(i).id + " || " + "nombre: " + " "
+					+ listAlumnos.get(i).nombre + " || " + "apellidos: " + " " + listAlumnos.get(i).apellidos + " || "
+					+ "email: " + " " + listAlumnos.get(i).email);
 		}
-		
+
+		try {
+			cn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 }
