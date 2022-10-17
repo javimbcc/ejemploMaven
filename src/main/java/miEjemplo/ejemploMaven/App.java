@@ -52,15 +52,11 @@ public class App {
 					+ "email: " + " " + listAlumnos.get(i).email);
 		}
 		//Hacemos el delete
-		consultasPostgreSQL.eliminarAlumnos(cn);
+		//consultasPostgreSQL.eliminarAlumnos(cn);
 		
-		//volvemos a imprimir por pantalla para ver que efectivamente se ha eliminado el id=8 que es el que buscamos eliminar
-		System.out.println("Tabla de alumnos con el id=8 eliminado");
-		for (int i = 0; i < listAlumnos.size(); i++) {
-			System.out.println("id: " + " " + listAlumnos.get(i).id + " || " + "nombre: " + " "
-					+ listAlumnos.get(i).nombre + " || " + "apellidos: " + " " + listAlumnos.get(i).apellidos + " || "
-					+ "email: " + " " + listAlumnos.get(i).email);
-		}
+		//Hacemos el update
+		
+		consultasPostgreSQL.cambiarDatosAlumno(cn);
 		
 		try {
 			cn.close();

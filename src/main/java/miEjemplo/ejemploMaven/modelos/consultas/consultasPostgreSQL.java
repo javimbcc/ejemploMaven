@@ -85,11 +85,31 @@ public class consultasPostgreSQL {
 
 			} catch (SQLException e) {
 
-				System.out.println("Error generando la declaracionSQL (insert): " + e);
+				System.out.println("Error generando la declaracionSQL (DELETE): " + e);
 
 			}
 		}
 	}
 
 	// Update alumno
+	public static void cambiarDatosAlumno(Connection conexion) {
+		// Declaramos el state y la respuesta
+		Statement declaracionSQL = null;
+		ResultSet resultadoConsulta = null;
+		if (conexion != null) {
+
+			try {
+				System.out.println("HACEMOS El UPDATE");
+				// Abrimos la declaracion
+				declaracionSQL = conexion.createStatement();
+				// Se hace y ejecuta la consulta
+				resultadoConsulta = declaracionSQL
+						.executeQuery("UPDATE \"ejercicioCCasa\".\"Alumnos\" SET nombre='Antonio', apellidos='Sumerio2', email='cigalaupdate@update.com' WHERE id=6 ");
+
+			} catch (SQLException e) {
+				System.out.println("Error generando la declaracionSQL (UPDATE): " + e);
+
+			}
+		}
+	}
 }
